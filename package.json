@@ -1,0 +1,42 @@
+{
+  "name": "pocket-world",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.14.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "countries:sync": "tsx src/scripts/sync-countries.ts",
+    "hero:frames": "node src/scripts/crop-hero-frames.mjs && node src/scripts/process-hero-frames.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "latest",
+    "@fontsource-variable/fraunces": "latest",
+    "@fontsource/press-start-2p": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "latest",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "latest",
+    "jsdom": "latest",
+    "sharp": "^0.34.5",
+    "tailwindcss": "latest",
+    "tsx": "latest",
+    "typescript": "^6.0.0",
+    "vitest": "latest"
+  }
+}
