@@ -6,9 +6,11 @@ import Link from "next/link";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CountryTravelTransition } from "./country-travel-transition";
 
-const { prefetch, push } = vi.hoisted(() => ({ prefetch: vi.fn(), push: vi.fn() }));
+const navigation = vi.hoisted(() => ({ pathname: "/", prefetch: vi.fn(), push: vi.fn() }));
+const { prefetch, push } = navigation;
 
 vi.mock("next/navigation", () => ({
+  usePathname: () => navigation.pathname,
   useRouter: () => ({ prefetch, push }),
 }));
 
@@ -42,6 +44,7 @@ describe("CountryTravelTransition", () => {
     vi.useFakeTimers();
     push.mockReset();
     prefetch.mockReset();
+    navigation.pathname = "/";
     mockReducedMotion(false);
   });
 
@@ -65,7 +68,7 @@ describe("CountryTravelTransition", () => {
 
     act(() => vi.advanceTimersByTime(100));
     expect(push).toHaveBeenCalledTimes(1);
-    expect(push).toHaveBeenCalledWith("/pt-BR/countries/brazil");
+    expect(push).toHaveBeenCalledWith("/pt-BR/countries/brazil", { scroll: true });
     expect(document.querySelector(".country-travel-plane")).not.toBeNull();
 
     act(() => vi.advanceTimersByTime(1_600));
@@ -83,7 +86,7 @@ describe("CountryTravelTransition", () => {
     expect(document.querySelector(".country-travel-plane")).toBeNull();
 
     act(() => vi.advanceTimersByTime(80));
-    expect(push).toHaveBeenCalledWith("/pt-BR/countries/brazil");
+    expect(push).toHaveBeenCalledWith("/pt-BR/countries/brazil", { scroll: true });
     act(() => vi.advanceTimersByTime(140));
     expect(document.querySelector(".country-travel-stage")).toBeNull();
   });
@@ -120,7 +123,7 @@ describe("CountryTravelTransition", () => {
     expect(stage).toHaveClass("is-reverse");
     expect(plane?.style.offsetPath).toContain(`M ${window.innerWidth}`);
     act(() => vi.advanceTimersByTime(0));
-    expect(push).toHaveBeenCalledWith("/pt-BR/countries");
+    expect(push).toHaveBeenCalledWith("/pt-BR/countries", { scroll: false });
   });
 
   it("clears pending navigation when unmounted", () => {
@@ -135,5 +138,18 @@ describe("CountryTravelTransition", () => {
     act(() => vi.advanceTimersByTime(1_700));
 
     expect(push).not.toHaveBeenCalled();
+  });
+
+  it("forces a country page to the absolute top after it mounts", () => {
+    navigation.pathname = "/pt-BR/countries/brazil";
+    const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => undefined);
+
+    render(
+      <CountryTravelTransition>
+        <div className="site-shell">Brasil</div>
+      </CountryTravelTransition>,
+    );
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: "auto" });
   });
 });
