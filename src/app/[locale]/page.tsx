@@ -50,7 +50,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section className="section panel-section" id="featured">
         <div className="section-heading"><div><p className="eyebrow">01 / COLLECTION</p><h2>{dictionary.home.featured}</h2><p>{dictionary.home.featuredDescription}</p></div><Link href={`/${locale}/countries`}>{dictionary.home.explore} <span aria-hidden="true">&#8594;</span></Link></div>
-        <CountryGrid countries={featured} locale={locale} action={dictionary.countries.view} />
+        <CountryGrid countries={featured} locale={locale} action={dictionary.countries.view} travel />
       </section>
 
       <section className="section region-section" id="continents">

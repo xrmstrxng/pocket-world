@@ -6,6 +6,7 @@ import { getCountryEditorial } from "@/content/countries";
 import { countryRepository } from "@/infrastructure/repositories/local-country.repository";
 import { getDictionary } from "@/shared/i18n/dictionaries";
 import { isLocale, locales } from "@/shared/types/locale";
+import { CountryEditorialAccordion } from "@/features/country-editorial/country-editorial-accordion";
 import { CountryGrid } from "@/widgets/country-grid/country-grid";
 
 const numberFormat = (locale: string, value?: number) => value === undefined ? null : new Intl.NumberFormat(locale).format(value);
@@ -22,7 +23,11 @@ export async function generateMetadata({ params }: CountryPageProps): Promise<Me
   if (!isLocale(locale)) return {};
   const country = await countryRepository.findBySlug(slug, locale);
   if (!country) return {};
-  return { title: country.names.common[locale], description: `${country.names.official[locale]} — ${country.region}` };
+  const editorial = getCountryEditorial(country, locale);
+  return {
+    title: country.names.common[locale],
+    description: editorial.content?.introduction ?? `${country.names.official[locale]} — ${country.region}`,
+  };
 }
 
 export default async function CountryPage({ params }: CountryPageProps) {
@@ -59,7 +64,52 @@ export default async function CountryPage({ params }: CountryPageProps) {
           <DataPanel icon="⌘" title={dictionary.detail.tlds} values={country.tlds} empty={dictionary.detail.noData} />
         </div>
       </section>
-      <section className="section editorial-section"><div><p className="eyebrow">02 / FIELD NOTES</p><h2>{dictionary.detail.editorial}</h2><p className="editorial-intro">{editorial.intro}</p>{editorial.isPlaceholder && <p className="placeholder-note">◇ {dictionary.detail.placeholder}</p>}</div><ul>{editorial.highlights.map((highlight) => <li key={highlight}><span aria-hidden="true">✦</span>{highlight}</li>)}</ul></section>
+      <section className="section country-editorial">
+        <div className="country-editorial__heading">
+          <p className="eyebrow">02 / FIELD NOTES</p>
+          <h2>{dictionary.detail.editorialDetail.title}</h2>
+          <p>{editorial.content?.introduction ?? editorial.fallback}</p>
+          {editorial.content ? <small>{dictionary.detail.editorialDetail.description}</small> : null}
+        </div>
+        {editorial.content ? (
+          <>
+            <CountryEditorialAccordion
+              countryCode={country.codes.alpha2.toLowerCase()}
+              countryName={country.names.common[locale]}
+              flagUrl={country.flag.pngUrl ?? country.flag.svgUrl}
+              sections={editorial.content.sections}
+              labels={dictionary.detail.editorialDetail}
+            />
+            {editorial.content.curiosities.length ? (
+              <section className="country-curiosities">
+                <div><span aria-hidden="true">?</span><h3>{dictionary.detail.editorialDetail.curiosities}</h3></div>
+                <ul>{editorial.content.curiosities.map((item) => <li key={item}>{item}</li>)}</ul>
+              </section>
+            ) : null}
+            {editorial.content.sources.length ? (
+              <section className="editorial-sources">
+                <h3>{dictionary.detail.editorialDetail.sources}</h3>
+                <ol>
+                  {editorial.content.sources.map((source) => {
+                    const usedBy = editorial.content!.sections.filter((section) => section.sourceIds.includes(source.id)).map((section) => section.title);
+                    return (
+                      <li key={source.id}>
+                        <a href={source.url} target="_blank" rel="noopener noreferrer">
+                          <strong>{source.label}</strong><span aria-hidden="true"> ↗</span>
+                        </a>
+                        <span>{source.publisher}</span>
+                        <small>{dictionary.detail.editorialDetail.sourceFor}: {usedBy.join(", ")} · {dictionary.detail.editorialDetail.accessedAt}: {source.accessedAt}</small>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </section>
+            ) : null}
+          </>
+        ) : (
+          <div className="editorial-placeholder" role="status"><span aria-hidden="true">◇</span><p>{editorial.fallback}</p></div>
+        )}
+      </section>
       <section className="section related-section"><div className="section-heading"><div><p className="eyebrow">03 / NEXT QUEST</p><h2>{dictionary.detail.related}</h2></div></div><CountryGrid countries={related} locale={locale} action={dictionary.countries.view} /></section>
     </article>
   );
