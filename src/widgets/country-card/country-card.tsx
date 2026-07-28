@@ -3,9 +3,9 @@ import Image from "next/image";
 import type { CountrySummary } from "@/entities/country/country-summary.types";
 import type { Locale } from "@/shared/types/locale";
 
-export function CountryCard({ country, locale, action }: { country: CountrySummary; locale: Locale; action: string }) {
+export function CountryCard({ country, locale, action, travel = false }: { country: CountrySummary; locale: Locale; action: string; travel?: boolean }) {
   return (
-    <Link className="country-card" href={`/${locale}/countries/${country.slug}`}>
+    <Link className="country-card" data-country-travel={travel ? "" : undefined} href={`/${locale}/countries/${country.slug}`}>
       <span className="country-card__flag">
         {country.flagUrl
           ? <Image src={country.flagUrl} alt={`${country.name} flag`} fill sizes="112px" />
