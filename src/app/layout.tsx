@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/fraunces";
 import "@fontsource/press-start-2p";
+import "@fontsource-variable/edu-vic-wa-nt-hand";
 import "./globals.css";
 
 export const metadata: Metadata = {

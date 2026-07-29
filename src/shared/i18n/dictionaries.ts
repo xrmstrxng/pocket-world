@@ -47,6 +47,7 @@ const dictionaries = {
       callingCodes: "Códigos telefônicos",
       timezones: "Fusos horários",
       tlds: "Domínios",
+      borders: "Países fronteiriços",
       editorial: "Caderno de descobertas",
       placeholder: "Conteúdo editorial demonstrativo — substitua por pesquisa e fontes próprias.",
       editorialDetail: {
@@ -122,6 +123,7 @@ const dictionaries = {
       callingCodes: "Calling codes",
       timezones: "Time zones",
       tlds: "Domains",
+      borders: "Bordering countries",
       editorial: "Discovery notebook",
       placeholder: "Demonstration editorial content — replace it with your own research and sources.",
       editorialDetail: {

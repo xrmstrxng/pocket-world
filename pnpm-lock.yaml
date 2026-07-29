@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource-variable/edu-vic-wa-nt-hand':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource-variable/fraunces':
         specifier: latest
         version: 5.3.0
@@ -431,6 +434,9 @@ packages:
     peerDependenciesMeta:
       '@noble/hashes':
         optional: true
+
+  '@fontsource-variable/edu-vic-wa-nt-hand@5.3.0':
+    resolution: {integrity: sha512-aNE2WdEOvNEZs5s5W3wvny3toZB+BDTYxDio4gb/zPEMtLDr7R55yUMqxyrZZKWGyjPXGpvc6vZeID1a+XCLOw==}
 
   '@fontsource-variable/fraunces@5.3.0':
     resolution: {integrity: sha512-9BYGySn4AHEJdgp9Z28tQ3X+laJMEOITXkQarZXeloWQZDq5oOvXJ3kDA8c7MGIfpogIaZfjrQBqmda8POOCKA==}
@@ -3074,6 +3080,8 @@ snapshots:
       levn: 0.4.1
 
   '@exodus/bytes@1.15.1': {}
+
+  '@fontsource-variable/edu-vic-wa-nt-hand@5.3.0': {}
 
   '@fontsource-variable/fraunces@5.3.0': {}
 

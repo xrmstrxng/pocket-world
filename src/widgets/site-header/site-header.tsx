@@ -18,16 +18,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             priority
           />
         </span>
-        <span className="brand-name" aria-hidden="true">
-          <span className="brand-name__pocket">POCKET</span>
-          <span className="brand-name__world">
-            <span className="brand-letter brand-letter--book-w">W</span>
-            <span className="brand-letter brand-letter--compass">O</span>
-            <span className="brand-letter brand-letter--cut">R</span>
-            <span className="brand-letter">L</span>
-            <span className="brand-letter brand-letter--cut">D</span>
-          </span>
-        </span>
+        <span className="brand-name" aria-hidden="true">Pocket World</span>
       </Link>
       <nav aria-label="Primary navigation">
         <Link href={`/${locale}#home`}>{dictionary.nav.home}</Link>

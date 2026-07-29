@@ -32,15 +32,7 @@ button, a, input, select { outline-offset: 4px; }
 .brand { display: flex; align-items: center; gap: 11px; color: var(--pw-dark); }
 .brand-mark { width: 64px; height: 58px; display: grid; place-items: center; flex: 0 0 64px; }
 .brand-mark img { width: 64px; height: 58px; object-fit: contain; image-rendering: pixelated; }
-.brand-name { min-width: 104px; display: grid; justify-items: start; gap: 5px; font-family: "Press Start 2P", monospace; line-height: 1; }
-.brand-name__pocket { padding: 3px 5px; color: var(--pw-cream); background: var(--pw-dark); font-size: 7px; letter-spacing: 1.5px; box-shadow: 2px 2px 0 rgba(245,233,216,.72); }
-.brand-name__world { display: flex; align-items: flex-end; gap: 1px; color: var(--pw-dark); font-size: 15px; letter-spacing: .4px; text-shadow: 2px 2px 0 rgba(245,233,216,.82); }
-.brand-letter { position: relative; display: inline-block; }
-.brand-letter--cut { clip-path: polygon(0 0, calc(100% - 2px) 0, 100% 2px, 100% 100%, 2px 100%, 0 calc(100% - 2px)); }
-.brand-letter--compass::before { content: ""; width: 2px; height: 8px; position: absolute; z-index: 1; top: 3px; left: 5px; background: var(--pw-deep-teal); box-shadow: 1px 0 0 var(--pw-earth-green); transform: rotate(45deg); transform-origin: center; }
-.brand-letter--compass::after { content: ""; width: 2px; height: 2px; position: absolute; z-index: 2; top: 6px; left: 6px; background: var(--pw-cream); }
-.brand-letter--book-w { margin-bottom: 2px; }
-.brand-letter--book-w::after { content: ""; width: 18px; height: 4px; position: absolute; left: -1px; bottom: -5px; background: linear-gradient(15deg, transparent 0 34%, var(--pw-earth-green) 35% 49%, transparent 50%) left / 50% 100% no-repeat, linear-gradient(-15deg, transparent 0 34%, var(--pw-earth-green) 35% 49%, transparent 50%) right / 50% 100% no-repeat; }
+.brand-name { display: inline-flex; align-items: baseline; font-family: "Fraunces Variable", Georgia, serif; font-size: 26px; font-optical-sizing: auto; font-weight: 610; line-height: 1; letter-spacing: -.02em; font-variation-settings: "SOFT" 12, "WONK" 0; white-space: nowrap; }
 .site-header nav { display: flex; align-items: center; gap: clamp(12px, 2vw, 31px); font-size: 14px; font-weight: 750; }
 .site-header nav a { padding: 10px 3px; }
 .locale-switcher { border: 2px solid rgba(41,73,87,.55); padding: 9px 12px !important; display: inline-flex; align-items: center; gap: 7px; box-shadow: 3px 3px 0 rgba(41,73,87,.28); background: rgba(255,250,245,.28); }
@@ -153,8 +145,73 @@ h1, h2, h3, p { margin-top: 0; }
 .country-hero { min-height: 370px; padding-top: 70px; padding-bottom: 70px; display: flex; align-items: center; justify-content: space-between; gap: 40px; background-color: var(--pw-sky-teal); color: var(--pw-dark); background-image: radial-gradient(rgba(255,255,255,.27) 1px, transparent 1px); background-size: 19px 19px; }
 .country-hero h1 { margin: 22px 0 12px; display: flex; align-items: center; gap: 22px; font-size: clamp(44px, 6vw, 76px); line-height: 1.02; letter-spacing: -.035em; font-variation-settings: "SOFT" 35, "WONK" 1; }.country-hero h1 > span { font-size: inherit; }.country-hero__flag { width: 180px; height: 118px; flex: 0 0 auto; object-fit: cover; border: 0; box-shadow: 0 12px 24px rgba(23,54,69,.3), 5px 6px 0 rgba(23,54,69,.2); }.country-hero p:last-child { color: #355d68; font-size: 18px; }.back-link { display: inline-block; margin-bottom: 28px; font-weight: 750; }
 .passport-stamp { flex: 0 0 155px; width: 155px; height: 155px; display: grid; place-items: center; padding: 20px; border: 5px double var(--pw-dark); border-radius: 50%; font-family: "Press Start 2P"; font-size: 8px; transform: rotate(8deg); }.passport-stamp strong { font-size: 30px; }
-.detail-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; }.facts-panel { padding: 31px; background: var(--pw-white); border: 3px solid var(--pw-dark); box-shadow: var(--shadow-pixel); }.facts-panel dl { margin: 27px 0 0; }.facts-panel dl div { padding: 14px 0; display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--pw-cloud); }.facts-panel dt { color: #61757d; }.facts-panel dd { margin: 0; text-align: right; font-weight: 800; }
-.data-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }.data-panel { padding: 22px; display: flex; gap: 17px; align-items: flex-start; background: var(--pw-cloud); border: 3px solid var(--pw-dark); }.data-panel > span { flex: 0 0 39px; height: 39px; display: grid; place-items: center; background: var(--pw-dark); color: var(--pw-white); }.data-panel h3 { margin: 0 0 8px; font-size: 16px; }.data-panel p { margin: 0; color: #536b74; font-size: 14px; line-height: 1.55; }
+.country-notebook {
+  --notebook-rule: 36px;
+  margin: -40px max(24px, calc((100vw - 1180px) / 2)) 0;
+  padding: 64px 78px 88px 48px;
+  position: relative;
+  z-index: 2;
+  border-radius: 26px;
+  background-color: #fbf1d8;
+  background-image:
+    linear-gradient(90deg, transparent 0 max(42px, 7vw), rgba(190,122,102,.09) max(42px, 7vw) calc(max(42px, 7vw) + 1px), transparent calc(max(42px, 7vw) + 1px)),
+    repeating-linear-gradient(180deg, transparent 0 calc(var(--notebook-rule) - 1px), rgba(79,133,139,.16) calc(var(--notebook-rule) - 1px) var(--notebook-rule));
+  box-shadow: 0 46px 80px -32px rgba(23,42,50,.5), 0 18px 32px -18px rgba(23,42,50,.32);
+}
+.country-notebook::before {
+  content: "";
+  width: 24px;
+  position: absolute;
+  z-index: 3;
+  top: 30px;
+  bottom: 30px;
+  right: 24px;
+  background: radial-gradient(circle, rgba(41,73,87,.18) 0 6px, rgba(41,73,87,.34) 6.5px 8.5px, #fbf1d8 9px 11px, transparent 11.5px) center top / 24px 46px repeat-y;
+  pointer-events: none;
+}
+.country-notebook::after { content: ""; height: 50px; position: absolute; z-index: 1; right: 6%; bottom: -28px; left: 6%; background: radial-gradient(ellipse, rgba(23,42,50,.42), transparent 72%); filter: blur(3px); pointer-events: none; }
+.detail-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(44px, 6vw, 78px); }
+.facts-panel { min-width: 0; padding: 8px clamp(18px, 3vw, 34px) 18px 0; position: relative; border-right: 1px dashed rgba(41,73,87,.2); }
+.facts-panel h2 { width: max-content; margin: 10px 0 30px; position: relative; font-family: "Edu VIC WA NT Hand Variable", "Inter Variable", sans-serif; font-size: clamp(38px, 4.4vw, 54px); font-weight: 620; line-height: 1.05; letter-spacing: -.02em; }
+.facts-panel h2::after { content: ""; height: 5px; position: absolute; right: 4%; bottom: -6px; left: 1%; background: linear-gradient(90deg, transparent, rgba(79,133,139,.5) 5% 92%, transparent); border-radius: 50%; transform: rotate(-1deg); }
+.facts-panel__spark { margin-left: 6px; position: relative; top: -.55em; font-size: .32em; font-weight: 400; color: var(--pw-deep-teal); }
+.facts-panel dl { margin: 0; }
+.overview-fact { min-height: calc(var(--notebook-rule) * 2); padding: 22px 0 6px; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 12px; border-bottom: 1px solid rgba(79,133,139,.16); }
+.overview-fact dt { display: inline-flex; align-items: flex-end; gap: 11px; color: #4f6871; font-family: "Inter Variable", system-ui, sans-serif; font-size: clamp(14px, 1.25vw, 16px); font-weight: 590; line-height: 1.12; }
+.overview-fact dt::after { content: ""; min-width: 24px; height: 1px; flex: 1; background: repeating-linear-gradient(90deg, rgba(41,73,87,.25) 0 2px, transparent 2px 6px); }
+.overview-fact__icon { width: 21px; height: 21px; flex: 0 0 auto; fill: none; stroke: var(--pw-deep-teal); stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+.overview-fact dd { max-width: 230px; margin: 0; color: var(--pw-ink); font-family: "Inter Variable", system-ui, sans-serif; font-size: clamp(15px, 1.35vw, 17px); font-weight: 760; line-height: 1.08; text-align: right; overflow-wrap: anywhere; }
+.data-panels { padding-top: 25px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 22px; align-content: start; }
+.data-panel {
+  min-height: 152px;
+  padding: 40px 24px 26px;
+  position: relative;
+  z-index: 0;
+  background-color: #f7e9b9;
+  border: 1px solid rgba(41,73,87,.1);
+  border-radius: 16px;
+  box-shadow: 0 14px 26px -16px rgba(41,73,87,.4);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.data-panel:nth-child(6n + 1) { background-color: #f7e9b9; }
+.data-panel:nth-child(6n + 2) { background-color: #dcebed; }
+.data-panel:nth-child(6n + 3) { background-color: #e2ecd9; }
+.data-panel:nth-child(6n + 4) { background-color: #f4edcf; }
+.data-panel:nth-child(6n + 5) { background-color: #dfe9f0; }
+.data-panel:nth-child(6n) { background-color: #e6eedf; }
+.data-panel:hover { transform: translateY(-3px); box-shadow: 0 18px 30px -18px rgba(41,73,87,.5); }
+.data-sticker { width: 64px; height: 64px; position: absolute; z-index: 2; top: -28px; left: 50%; display: grid; place-items: center; background: var(--pw-white); border-radius: 50%; box-shadow: 0 0 0 4px #fffdf8, 0 8px 16px -8px rgba(41,73,87,.4); transform: translateX(-50%); transition: transform .18s ease; }
+.data-sticker::after { content: ""; width: 34%; height: 20%; position: absolute; top: 10px; left: 14px; background: linear-gradient(135deg, rgba(255,255,255,.9), transparent); border-radius: 50%; pointer-events: none; }
+.data-panel:hover .data-sticker { transform: translate(-50%,-3px); }
+.data-sticker__svg, .data-sticker__img { width: 38px; height: 38px; }
+.data-sticker__svg { overflow: visible; fill: #8fbec3; stroke: var(--pw-dark); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.data-sticker__svg text { fill: var(--pw-dark); stroke: none; font-family: "Inter Variable", system-ui, sans-serif; font-size: 7px; font-weight: 850; }
+.data-sticker__svg--clock { fill: #f3d692; }
+.data-sticker__svg--domain { fill: #a9c8dd; }
+.data-sticker__svg--border { fill: #aec39b; }
+.data-sticker__img { object-fit: contain; display: block; }
+.data-panel h3 { margin: 0 0 8px; font-family: "Edu VIC WA NT Hand Variable", "Inter Variable", sans-serif; font-size: 24px; font-weight: 620; line-height: 1.08; letter-spacing: -.02em; }
+.data-panel p { margin: 0; color: #405b65; font-family: "Edu VIC WA NT Hand Variable", "Inter Variable", sans-serif; font-size: 17px; font-weight: 400; line-height: 1.35; overflow-wrap: anywhere; }
 .editorial-section { max-width: none; padding-left: max(24px, calc((100vw - 1180px) / 2)); padding-right: max(24px, calc((100vw - 1180px) / 2)); display: grid; grid-template-columns: .9fr 1.1fr; gap: 65px; background: var(--pw-earth-green); color: var(--pw-dark); }.editorial-intro { font-size: 18px; line-height: 1.7; color: #3f5a50; }.placeholder-note { padding: 13px; background: rgba(255,250,245,.32); font-size: 12px; }.editorial-section ul { margin: 0; padding: 0; list-style: none; }.editorial-section li { padding: 22px 0; display: flex; gap: 15px; line-height: 1.6; border-bottom: 1px solid rgba(41,73,87,.22); }.editorial-section li span { color: #8b6b49; }.related-section .country-grid { grid-template-columns: repeat(3, 1fr); }
 
 footer { padding: 44px 24px; text-align: center; background: var(--pw-dark); color: var(--pw-cloud); font-size: 12px; }.pixel-divider { display: block; margin-bottom: 18px; color: var(--pw-sky-teal); letter-spacing: 8px; }.not-found { min-height: 65vh; border: 0; }.not-found h1 { margin-bottom: 8px; }.not-found .button { margin-top: 20px; }
@@ -182,6 +239,24 @@ footer { padding: 44px 24px; text-align: center; background: var(--pw-dark); col
 @media (max-width: 600px) {
   .country-travel-plane { width: 145px; }
   .country-travel-smoke { transform: translate(-62%,-50%) scale(.82); }
+}
+
+@media (max-width: 900px) {
+  .country-notebook { margin: -32px 14px 0; padding: 60px 52px 64px 26px; border-radius: 20px; }
+  .detail-grid { gap: 54px; }
+  .facts-panel { padding-right: 0; padding-bottom: 42px; border-right: 0; border-bottom: 1px dashed rgba(41,73,87,.2); }
+}
+
+@media (max-width: 600px) {
+  .country-notebook { margin: -20px 8px 0; padding: 52px 38px 58px 20px; border-radius: 16px; }
+  .country-notebook::before { width: 14px; right: 10px; top: 18px; bottom: 18px; background-size: 14px 30px; }
+  .country-notebook::after { bottom: -20px; height: 36px; }
+  .facts-panel { padding-left: 2px; }
+  .facts-panel h2 { font-size: clamp(40px, 13vw, 52px); }
+  .overview-fact { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,auto); flex-direction: initial; gap: 9px; }
+  .overview-fact dd { max-width: 42vw; text-align: right; }
+  .data-panels { padding: 18px 3px 0; gap: 30px; }
+  .data-panel { min-height: 148px; padding-inline: 23px; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
