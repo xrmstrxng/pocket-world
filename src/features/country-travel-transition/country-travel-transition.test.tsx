@@ -123,7 +123,7 @@ describe("CountryTravelTransition", () => {
     expect(stage).toHaveClass("is-reverse");
     expect(plane?.style.offsetPath).toContain(`M ${window.innerWidth}`);
     act(() => vi.advanceTimersByTime(0));
-    expect(push).toHaveBeenCalledWith("/pt-BR/countries", { scroll: false });
+    expect(push).toHaveBeenCalledWith("/pt-BR/countries", { scroll: true });
   });
 
   it("clears pending navigation when unmounted", () => {

@@ -42,11 +42,13 @@ export function CountryTravelTransition({ children }: { children: ReactNode }) {
   const snapshotRef = useRef<HTMLDivElement | null>(null);
   const timeoutIdsRef = useRef<Set<number>>(new Set());
   const prefetchedRef = useRef<Set<string>>(new Set());
+  const forceTopPathRef = useRef<string | null>(null);
   const lockedRef = useRef(false);
   const [travel, setTravel] = useState<TravelState | null>(null);
 
   useLayoutEffect(() => {
-    if (!isCountryPage(pathname)) return;
+    const shouldForceTop = isCountryPage(pathname) || forceTopPathRef.current === pathname;
+    if (!shouldForceTop) return;
 
     const resetScroll = () => {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -58,7 +60,10 @@ export function CountryTravelTransition({ children }: { children: ReactNode }) {
     let secondFrame = 0;
     const firstFrame = window.requestAnimationFrame(() => {
       resetScroll();
-      secondFrame = window.requestAnimationFrame(resetScroll);
+      secondFrame = window.requestAnimationFrame(() => {
+        resetScroll();
+        forceTopPathRef.current = null;
+      });
     });
 
     return () => {
@@ -95,6 +100,7 @@ export function CountryTravelTransition({ children }: { children: ReactNode }) {
     const centerY = Math.round(viewportHeight / 2);
     const flightPath = `M 0 ${centerY} L ${viewportWidth} ${centerY}`;
     const destination = `${url.pathname}${url.search}${url.hash}`;
+    forceTopPathRef.current = url.pathname;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     setTravel({
@@ -108,22 +114,18 @@ export function CountryTravelTransition({ children }: { children: ReactNode }) {
 
     if (!reducedMotion) {
       schedule(() => {
-        if (direction === "forward") {
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
-        }
-        router.push(destination, { scroll: direction === "forward" });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        router.push(destination, { scroll: true });
       }, NAVIGATION_START_MS);
       schedule(finishTravel, TRAVEL_DURATION_MS);
       return;
     }
 
     schedule(() => {
-      if (direction === "forward") {
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }
-      router.push(destination, { scroll: direction === "forward" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      router.push(destination, { scroll: true });
     }, REDUCED_NAVIGATION_MS);
     schedule(finishTravel, REDUCED_FINISH_MS);
   }
