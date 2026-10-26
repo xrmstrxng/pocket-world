@@ -13,28 +13,38 @@ Pocket World is a retro, pixel-art inspired atlas for exploring real data about 
 - Search that ignores accents and letter case, across names, capitals, regions, languages and currencies, with autocomplete.
 - Filters by region and by UN membership, stored in the URL, plus pagination.
 - A statically generated page for every country, with structured data, editorial sections, curiosities, sources and related countries.
+- A per-country indicators panel (GDP, life expectancy, urbanization, internet use, forest area, CO₂ emissions, highest point). Each value shows its reference year and links to its source.
 
 ## Architecture
 
 Pocket World is a modular monolith built on the Next.js App Router. Pages are Server Components by default, and Client Components are used only where there is interaction.
 
-External data never reaches the UI directly. A sync script fetches it on the server, validates it, maps it to the internal `Country` model and writes it to a snapshot committed to the repository. **The build reads only that snapshot and never calls external APIs.**
+External data never reaches the UI directly. Sync scripts fetch it on the server, validate it, map it to internal models and write it to snapshots committed to the repository. **The build reads only those snapshots and never calls external APIs.** The two syncs are independent, so a failure in one source does not block the other.
 
 ```mermaid
 flowchart LR
-  subgraph sync["pnpm countries:sync (manual, server-side)"]
-    API[(REST Countries API)] --> Client[rest-countries.client]
-    Client --> Schema[Zod schema<br/>payload validation]
-    Schema --> Mapper[rest-countries.mapper]
-    Mapper --> Checks[Consistency checks<br/>ISO codes, slugs, borders]
+  subgraph countriesSync["pnpm countries:sync (needs API key)"]
+    RC[(REST Countries API)] --> RCClient[client] --> RCSchema[Zod schema] --> RCMapper[mapper]
+    RCMapper --> RCChecks[Checks: ISO codes,<br/>slugs, borders]
   end
 
-  Checks --> Snapshot[(src/data/generated/<br/>countries.json)]
+  subgraph factsSync["pnpm facts:sync (no key)"]
+    WB[(World Bank API)] --> WBClient[client] --> WBSchema[Zod schema] --> WBMapper[mapper]
+    WD[(Wikidata SPARQL)] --> WDClient[client] --> WDSchema[Zod schema] --> WDMapper[mapper]
+    WBMapper --> FactChecks[Checks: known countries,<br/>sources, ranges, years]
+    WDMapper --> FactChecks
+  end
+
+  RCChecks --> Countries[(countries.json)]
+  FactChecks --> Facts[(country-facts.json)]
+  Countries -. alpha-3 codes .-> factsSync
 
   subgraph app["Next.js app (build and runtime)"]
-    Snapshot --> Repo[LocalCountryRepository]
-    Repo --> UseCases[application/countries<br/>list, search, paginate, details]
-    Editorial[(src/content/countries<br/>editorial content, pt-BR and en)] --> Pages
+    Countries --> Repo[LocalCountryRepository]
+    Facts --> FactsRepo[LocalCountryFactsRepository]
+    Repo --> UseCases[application/countries<br/>list, search, paginate, details, facts]
+    FactsRepo --> UseCases
+    Editorial[(src/content/countries<br/>editorial, pt-BR and en)] --> Pages
     UseCases --> Pages[app/ pages]
     Pages --> UI[widgets and features]
   end
@@ -42,14 +52,14 @@ flowchart LR
 
 | Layer | Path | Responsibility |
 | --- | --- | --- |
-| Domain | `src/entities` | The `Country` model, summaries, utilities and the `CountryRepository` contract |
-| Application | `src/application` | Use cases: listing, search, pagination, suggestions, details |
-| Infrastructure | `src/infrastructure` | REST Countries client, schema and mapper, plus the local snapshot repository |
+| Domain | `src/entities` | The `Country` and `CountryFacts` models, their utilities and repository contracts |
+| Application | `src/application` | Use cases: listing, search, pagination, suggestions, details, facts |
+| Infrastructure | `src/infrastructure` | Clients, Zod schemas and mappers for REST Countries, World Bank and Wikidata, plus the local snapshot repositories |
 | Content | `src/content` | Editorial content for each country, in both locales, with sources |
-| Data | `src/data/generated` | The versioned snapshot written by the sync script |
+| Data | `src/data/generated` | Versioned snapshots written by the sync scripts |
 | UI | `src/app`, `src/widgets`, `src/features` | Routes, composed sections and interactive features |
 | Shared | `src/shared` | i18n dictionaries, locale types and constants |
-| Scripts | `src/scripts` | Country sync and hero animation pipeline |
+| Scripts | `src/scripts` | Data syncs and the hero animation pipeline |
 
 ## Stack
 
@@ -93,6 +103,14 @@ pnpm countries:sync
 
 The script validates the payload, checks for duplicate ISO codes and slugs and for invalid border references, then rewrites `src/data/generated/countries.json` and prints a report. Commit the updated snapshot.
 
+### Refreshing the indicators snapshot
+
+```bash
+pnpm facts:sync
+```
+
+This needs no API key. It reads the country codes from `countries.json`, fetches the latest value of each World Bank indicator and each country's highest point from Wikidata, then validates and writes `src/data/generated/country-facts.json`. The report lists coverage per indicator, values older than 5 years and countries with no data. Run it after `countries:sync` whenever the country list changes.
+
 ## Commands
 
 | Command | Description |
@@ -105,6 +123,7 @@ The script validates the payload, checks for duplicate ISO codes and slugs and f
 | `pnpm test` | Run the test suite once |
 | `pnpm test:watch` | Run tests in watch mode |
 | `pnpm countries:sync` | Fetch, validate and save the country snapshot (requires an API key) |
+| `pnpm facts:sync` | Fetch, validate and save the indicators snapshot from World Bank and Wikidata |
 | `pnpm hero:frames` | Rebuild the hero globe animation from the art sources in `assets/hero-sources/` |
 
 Continuous integration (`.github/workflows/ci.yml`) runs lint, typecheck, tests and build on every push and pull request.
@@ -112,10 +131,20 @@ Continuous integration (`.github/workflows/ci.yml`) runs lint, typecheck, tests 
 ## Data sources and credits
 
 - **Structured country data:** [REST Countries](https://restcountries.com/).
+- **Indicators:** [World Bank World Development Indicators](https://data.worldbank.org/), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- **Highest points and elevations:** [Wikidata](https://www.wikidata.org/), released under [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
 - **Flags:** images referenced by the REST Countries payload ([flagcdn.com](https://flagcdn.com/), Wikimedia Commons).
 - **Editorial content:** written for this project. Each country page lists its sources, such as the CIA World Factbook, UNESCO, United Nations bodies and sports federations, with the date each one was accessed.
 - **Fonts:** [Inter](https://rsms.me/inter/), [Fraunces](https://fonts.google.com/specimen/Fraunces) and [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P), all under the SIL Open Font License and served via [Fontsource](https://fontsource.org/).
 
 ## AI design decisions
 
-> To be completed in upcoming phases: data enrichment, editorial content generation and review, and the "Ask about the country" feature.
+### Data enrichment
+
+- **Facts come from APIs, not from a model.** Numbers such as GDP or elevation are fetched from the World Bank and Wikidata, never written by an LLM, so every value can be traced to a dataset, a year and a license.
+- **Sources were probed before they were adopted.** Wikidata's founding date (P571) was dropped because it is ambiguous: it returns 2008 for Nepal, the year it became a republic, and eleven dates for Afghanistan. Anthems and heads of state were dropped because they are contested in some countries and would go stale in a snapshot. UNESCO World Heritage counts were dropped because the UNESCO feed refuses automated access and the equivalent Wikidata query times out.
+- **Some data is deliberately discarded.** World Bank values older than 10 years are dropped, because a figure like "0% internet users (1990)" misleads more than an empty field. Elevations use Wikidata's best-ranked statement, normalized to metres, because the highest raw value can be a superseded survey (Everest: 8,850 m instead of 8,848.86 m).
+- **Mismatched identifiers are mapped explicitly.** Kosovo is `UNK` in the snapshot, `XKX` at the World Bank and has no alpha-3 code on Wikidata (`Q1246`). Explicit alias tables handle it, so no data is silently lost.
+- **Missing data stays missing.** A country without an indicator shows "No data". Nothing is estimated or interpolated.
+
+> Still to be documented: editorial content generation and review, and the "Ask about the country" feature.

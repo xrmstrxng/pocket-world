@@ -3,11 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getCountryEditorial } from "@/content/countries";
+import { getCountryFacts } from "@/application/countries/get-country-facts";
 import { countryRepository } from "@/infrastructure/repositories/local-country.repository";
+import { countryFactsRepository } from "@/infrastructure/repositories/local-country-facts.repository";
 import { getDictionary } from "@/shared/i18n/dictionaries";
 import { isLocale, locales } from "@/shared/types/locale";
 import { CountryEditorialAccordion } from "@/features/country-editorial/country-editorial-accordion";
 import { CountryGrid } from "@/widgets/country-grid/country-grid";
+import { CountryIndicators } from "@/widgets/country-indicators/country-indicators";
 
 const numberFormat = (locale: string, value?: number) => value === undefined ? null : new Intl.NumberFormat(locale).format(value);
 
@@ -37,6 +40,7 @@ export default async function CountryPage({ params }: CountryPageProps) {
   if (!country) notFound();
   const dictionary = getDictionary(locale);
   const editorial = getCountryEditorial(country, locale);
+  const factsView = await getCountryFacts(countryFactsRepository, country.codes.alpha3);
   const summaries = await countryRepository.findAllSummaries(locale);
   const related = summaries.filter((item) => item.region === country.region && item.id !== country.id).slice(0, 3);
   const facts = [
@@ -64,9 +68,10 @@ export default async function CountryPage({ params }: CountryPageProps) {
           <DataPanel icon="⌘" title={dictionary.detail.tlds} values={country.tlds} empty={dictionary.detail.noData} />
         </div>
       </section>
+      {factsView ? <CountryIndicators {...factsView} locale={locale} labels={dictionary.detail.indicators} /> : null}
       <section className="section country-editorial">
         <div className="country-editorial__heading">
-          <p className="eyebrow">02 / FIELD NOTES</p>
+          <p className="eyebrow">{factsView ? "03" : "02"} / FIELD NOTES</p>
           <h2>{dictionary.detail.editorialDetail.title}</h2>
           <p>{editorial.content?.introduction ?? editorial.fallback}</p>
           {editorial.content ? <small>{dictionary.detail.editorialDetail.description}</small> : null}
@@ -110,7 +115,7 @@ export default async function CountryPage({ params }: CountryPageProps) {
           <div className="editorial-placeholder" role="status"><span aria-hidden="true">◇</span><p>{editorial.fallback}</p></div>
         )}
       </section>
-      <section className="section related-section"><div className="section-heading"><div><p className="eyebrow">03 / NEXT QUEST</p><h2>{dictionary.detail.related}</h2></div></div><CountryGrid countries={related} locale={locale} action={dictionary.countries.view} /></section>
+      <section className="section related-section"><div className="section-heading"><div><p className="eyebrow">{factsView ? "04" : "03"} / NEXT QUEST</p><h2>{dictionary.detail.related}</h2></div></div><CountryGrid countries={related} locale={locale} action={dictionary.countries.view} /></section>
     </article>
   );
 }

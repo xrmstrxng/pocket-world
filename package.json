@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "countries:sync": "tsx src/scripts/sync-countries.ts",
+    "facts:sync": "tsx src/scripts/sync-country-facts.ts",
     "hero:frames": "node src/scripts/crop-hero-frames.mjs && node src/scripts/process-hero-frames.mjs"
   },
   "dependencies": {
