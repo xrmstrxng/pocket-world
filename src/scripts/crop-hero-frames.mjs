@@ -5,10 +5,11 @@ import sharp from "sharp";
 const outputDirectory = path.resolve("public/images/hero-frames");
 const frameWidth = 335;
 const frameHeight = 369;
+const sourceDirectory = path.resolve("assets/hero-sources");
 
 const sheets = [
-  { path: path.resolve("image.png"), firstFrame: 1, topInset: 50, horizontalInset: 10 },
-  { path: path.resolve("3da3b4b3-6013-4ac9-824e-69bc156ec9f4.png"), firstFrame: 11, topInset: 80, horizontalInset: 0 },
+  { path: path.join(sourceDirectory, "hero-sprite-sheet-frames-01-10.png"), firstFrame: 1, topInset: 50, horizontalInset: 10 },
+  { path: path.join(sourceDirectory, "hero-sprite-sheet-frames-11-20.png"), firstFrame: 11, topInset: 80, horizontalInset: 0 },
 ];
 
 await mkdir(outputDirectory, { recursive: true });
@@ -51,7 +52,7 @@ for (const sheet of sheets) {
   }
 }
 
-const bridgeSourcePath = path.resolve("ChatGPT Image 22_07_2026, 14_33_59.png");
+const bridgeSourcePath = path.join(sourceDirectory, "hero-frame-21-source.png");
 const bridgeMetadata = await sharp(bridgeSourcePath).metadata();
 if (!bridgeMetadata.width || !bridgeMetadata.height) throw new Error(`Could not read ${bridgeSourcePath}`);
 const bridgeWidth = Math.round(bridgeMetadata.width * 0.678);
