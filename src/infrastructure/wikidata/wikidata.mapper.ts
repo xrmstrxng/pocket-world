@@ -18,6 +18,7 @@ function toHighestPoint(row: HighestPointRow): HighestPoint | null {
     elevationM: elevation !== undefined && Number.isFinite(elevation) ? Math.round(elevation * 100) / 100 : undefined,
     wikidataId: entityId(row.point.value),
     sourceId: WIKIDATA_SOURCE_ID,
+    ...(portuguese ? {} : { missingPortugueseName: true as const }),
   };
 }
 

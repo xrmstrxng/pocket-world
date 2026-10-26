@@ -35,14 +35,29 @@ export interface IndicatorValue {
 export interface HighestPoint {
   name: LocalizedText;
   elevationM?: number;
-  wikidataId: string;
+  wikidataId?: string;
   sourceId: string;
+  /** Set when the source had no Portuguese label and the English name was reused. */
+  missingPortugueseName?: true;
 }
 
 export interface CountryFacts {
   alpha3: string;
   indicators: Partial<Record<IndicatorKey, IndicatorValue>>;
   highestPoint?: HighestPoint;
+}
+
+/** Hand-curated values that fill gaps left by the open-data sources. */
+export interface ManualCountryFacts {
+  indicators?: Partial<Record<IndicatorKey, IndicatorValue>>;
+  highestPoint?: HighestPoint;
+  /** Portuguese name for a highest point that came from the API with only an English label. */
+  highestPointNamePtBr?: string;
+}
+
+export interface ManualFactsCollection {
+  sources: FactSource[];
+  countries: Record<string, ManualCountryFacts>;
 }
 
 export interface CountryFactsSnapshot {

@@ -28,6 +28,8 @@ describe("mapHighestPoints", () => {
     expect(result.get("NPL")?.name).toEqual({ "pt-BR": "Everest", en: "Mount Everest" });
     expect(result.get("BRA")?.name["pt-BR"]).toBe("Pico da Neblina (BR)");
     expect(result.get("PSE")?.name["pt-BR"]).toBe("Mount Nabi Yunis");
+    expect(result.get("PSE")?.missingPortugueseName).toBe(true);
+    expect(result.get("NPL")).not.toHaveProperty("missingPortugueseName");
     expect(result.get("NPL")).toMatchObject({ elevationM: 8848.86, wikidataId: "Q513", sourceId: "wikidata" });
   });
 

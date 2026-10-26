@@ -56,7 +56,9 @@ export function CountryIndicators({ facts, sourcesById, locale, labels }: Props)
           icon={icons.highestPoint}
           label={labels.items.highestPoint}
           value={point ? [point.name[locale], point.elevationM !== undefined ? formatElevation(point.elevationM, locale) : null].filter(Boolean).join(" · ") : labels.noData}
-          source={point && sourcesById[point.sourceId] ? { ...sourcesById[point.sourceId], url: `https://www.wikidata.org/wiki/${point.wikidataId}` } : undefined}
+          source={point && sourcesById[point.sourceId]
+            ? { ...sourcesById[point.sourceId], url: point.wikidataId ? `https://www.wikidata.org/wiki/${point.wikidataId}` : sourcesById[point.sourceId].url }
+            : undefined}
           labels={labels}
         />
       </dl>

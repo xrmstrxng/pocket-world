@@ -14,3 +14,6 @@ export const UN_MEMBER_ALPHA3_CODES = new Set([
   "TJK", "TZA", "THA", "TLS", "TGO", "TON", "TTO", "TUN", "TUR", "TKM", "TUV",
   "UGA", "UKR", "ARE", "GBR", "USA", "URY", "UZB", "VUT", "VEN", "VNM", "YEM", "ZMB", "ZWE",
 ]);
+
+/** Non-UN-members that still get full editorial treatment: Vatican City, Palestine, Taiwan and Kosovo. */
+export const FULL_TIER_EXTRA_ALPHA3_CODES = new Set(["VAT", "PSE", "TWN", "UNK"]);
