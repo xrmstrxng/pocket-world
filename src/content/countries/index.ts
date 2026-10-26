@@ -1,10 +1,20 @@
 import type { Country } from "@/entities/country/country.types";
 import type { Locale } from "@/shared/types/locale";
 import { afghanistanEditorial } from "./af";
+import { australiaEditorial } from "./au";
+import { brazilEditorial } from "./br";
+import { germanyEditorial } from "./de";
+import { japanEditorial } from "./jp";
+import { nigeriaEditorial } from "./ng";
 import type { CountryEditorialContent, CountryEditorialView } from "./editorial.types";
 
-const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialContent>> = {
+export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialContent>> = {
   AF: afghanistanEditorial,
+  AU: australiaEditorial,
+  BR: brazilEditorial,
+  DE: germanyEditorial,
+  JP: japanEditorial,
+  NG: nigeriaEditorial,
 };
 
 const fallbackByLocale: Record<Locale, string> = {
@@ -30,7 +40,9 @@ export function getCountryEditorial(country: Country, locale: Locale): CountryEd
 export type {
   CountryEditorialContent,
   CountryEditorialView,
+  EditorialReviewStatus,
   EditorialSection,
   EditorialSectionKey,
   EditorialSource,
+  EditorialTier,
 } from "./editorial.types";

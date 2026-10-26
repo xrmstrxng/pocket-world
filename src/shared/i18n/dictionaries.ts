@@ -69,6 +69,7 @@ const dictionaries = {
         sources: "Fontes e referências",
         accessedAt: "Acesso em",
         sourceFor: "Referência para",
+        aiDraft: "Texto pesquisado e redigido com auxílio de IA a partir das fontes listadas abaixo, ainda em revisão humana.",
       },
       indicators: {
         title: "Indicadores",
@@ -161,6 +162,7 @@ const dictionaries = {
         sources: "Sources and references",
         accessedAt: "Accessed",
         sourceFor: "Reference for",
+        aiDraft: "Researched and drafted with AI assistance from the sources listed below; human review in progress.",
       },
       indicators: {
         title: "Indicators",

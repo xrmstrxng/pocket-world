@@ -86,6 +86,8 @@ export const afghanistanEditorial: Record<"pt-BR" | "en", CountryEditorialConten
   "pt-BR": {
     alpha2: "AF",
     locale: "pt-BR",
+    tier: "full",
+    reviewStatus: "reviewed",
     introduction:
       "Entre a Ásia Central e o Sul da Ásia, o Afeganistão reúne paisagens montanhosas, rotas históricas e uma herança cultural formada por muitos povos. Esta leitura editorial complementa os dados do atlas com contexto verificado.",
     sections: [
@@ -223,6 +225,8 @@ export const afghanistanEditorial: Record<"pt-BR" | "en", CountryEditorialConten
   en: {
     alpha2: "AF",
     locale: "en",
+    tier: "full",
+    reviewStatus: "reviewed",
     introduction:
       "Between Central and South Asia, Afghanistan brings together mountain landscapes, historic routes and a cultural heritage shaped by many peoples. This editorial reading adds verified context to the atlas data.",
     sections: [

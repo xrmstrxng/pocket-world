@@ -124,6 +124,8 @@ This needs no API key. It reads the country codes from `countries.json`, fetches
 | `pnpm test:watch` | Run tests in watch mode |
 | `pnpm countries:sync` | Fetch, validate and save the country snapshot (requires an API key) |
 | `pnpm facts:sync` | Fetch, validate and save the indicators snapshot from World Bank and Wikidata |
+| `pnpm facts:gaps` | Write `docs/data-gaps.md`, listing indicators missing per country, for manual filling |
+| `pnpm content:check-links` | Check that every editorial source URL still resolves |
 | `pnpm hero:frames` | Rebuild the hero globe animation from the art sources in `assets/hero-sources/` |
 
 Continuous integration (`.github/workflows/ci.yml`) runs lint, typecheck, tests and build on every push and pull request.
@@ -147,4 +149,15 @@ Continuous integration (`.github/workflows/ci.yml`) runs lint, typecheck, tests 
 - **Mismatched identifiers are mapped explicitly.** Kosovo is `UNK` in the snapshot, `XKX` at the World Bank and has no alpha-3 code on Wikidata (`Q1246`). Explicit alias tables handle it, so no data is silently lost.
 - **Missing data stays missing.** A country without an indicator shows "No data". Nothing is estimated or interpolated.
 
-> Still to be documented: editorial content generation and review, and the "Ask about the country" feature.
+### Editorial content
+
+- **Two tiers.** UN members plus Vatican City, Palestine, Taiwan and Kosovo get the full nine-section treatment. Other territories get a short version (territory, geography, history). Each entry records its `tier`, and a test enforces the right tier and sections for every country.
+- **Researched before written.** Each draft is written with AI assistance from pages that were actually opened during research, never from model memory. Every section cites the sources it relies on, and tests reject citations that point to undeclared sources, as well as declared sources that nothing cites.
+- **Verification changed drafts.** Checking a claim against its source caught errors before they shipped. For example, an early draft placed Pico da Neblina "on the Venezuelan border", but the source puts the summit about 687 m inside Brazil. Details that no opened source confirmed, such as specific ingredients or descriptions, were removed instead of kept.
+- **Uncertainty is stated, not hidden.** When sources disagree, the text gives a range or a rounded figure instead of picking one. For example, Nigerian surveys put the Muslim share between about 45% and 58%, and the last census to ask about religion was in 1963.
+- **Source choice.** The CIA World Factbook was discontinued in 2026, and several official portals (IBGE, gov.br, Britannica, UNESCO World Heritage) refuse automated access. Drafts prefer institutional sources that could be read (UNESCO intangible heritage lists, national legislation, International IDEA, university press) and fall back to Wikipedia articles, always linked so readers can check them.
+- **Drafts are labeled.** Entries carry `reviewStatus: "ai-draft"` until a person reviews them, and the page shows a visible note while they do. `pnpm content:check-links` confirms that every source URL still resolves. It reports sites that block automated clients separately, for manual checking.
+
+### "Ask about the country" (planned)
+
+The architecture is decided but not yet built. See [ADR 0001](docs/decisions/0001-ask-about-the-country.md). It covers grounded answers with labeled general-knowledge fallback, a configurable provider chain (Groq → Gemini), an eval to choose the model, and a cache that grows from verified answers to reduce dependence on providers over time.

@@ -75,6 +75,7 @@ export default async function CountryPage({ params }: CountryPageProps) {
           <h2>{dictionary.detail.editorialDetail.title}</h2>
           <p>{editorial.content?.introduction ?? editorial.fallback}</p>
           {editorial.content ? <small>{dictionary.detail.editorialDetail.description}</small> : null}
+          {editorial.content?.reviewStatus === "ai-draft" ? <p className="editorial-draft-note"><span aria-hidden="true">✎</span> {dictionary.detail.editorialDetail.aiDraft}</p> : null}
         </div>
         {editorial.content ? (
           <>

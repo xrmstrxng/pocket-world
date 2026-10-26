@@ -14,6 +14,7 @@
     "countries:sync": "tsx src/scripts/sync-countries.ts",
     "facts:sync": "tsx src/scripts/sync-country-facts.ts",
     "facts:gaps": "tsx src/scripts/report-fact-gaps.ts",
+    "content:check-links": "tsx src/scripts/check-editorial-links.ts",
     "hero:frames": "node src/scripts/crop-hero-frames.mjs && node src/scripts/process-hero-frames.mjs"
   },
   "dependencies": {
