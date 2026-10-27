@@ -21,7 +21,7 @@ export const germanyEditorial: Record<"pt-BR" | "en", CountryEditorialContent> =
     alpha2: "DE",
     locale: "pt-BR",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "No centro da Europa, a Alemanha vai dos mares do Norte e Báltico aos Alpes. Sua história atravessa o Sacro Império, a Reforma, a unificação, os horrores do nazismo, a divisão da Guerra Fria e a reunificação, e sua cultura deixou marcas na música, na filosofia e na literatura.",
     sections: [
@@ -158,7 +158,7 @@ export const germanyEditorial: Record<"pt-BR" | "en", CountryEditorialContent> =
     alpha2: "DE",
     locale: "en",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "In the heart of Europe, Germany stretches from the North and Baltic seas to the Alps. Its history spans the Holy Roman Empire, the Reformation, unification, the horrors of Nazism, Cold War division and reunification, and its culture left a mark on music, philosophy and literature.",
     sections: [

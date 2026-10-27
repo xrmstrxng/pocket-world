@@ -24,7 +24,7 @@ export const australiaEditorial: Record<"pt-BR" | "en", CountryEditorialContent>
     alpha2: "AU",
     locale: "pt-BR",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "Um país do tamanho de um continente, majoritariamente árido, onde povos aborígenes e das ilhas do Estreito de Torres mantêm algumas das culturas contínuas mais antigas do planeta. A colonização britânica, a imigração e o debate sobre reconciliação moldam a Austrália de hoje.",
     sections: [
@@ -160,7 +160,7 @@ export const australiaEditorial: Record<"pt-BR" | "en", CountryEditorialContent>
     alpha2: "AU",
     locale: "en",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "A continent-sized, mostly arid country where Aboriginal and Torres Strait Islander peoples maintain some of the oldest continuous cultures on Earth. British colonization, immigration and the debate over reconciliation shape Australia today.",
     sections: [

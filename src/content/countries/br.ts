@@ -108,7 +108,7 @@ export const brazilEditorial: Record<"pt-BR" | "en", CountryEditorialContent> = 
     alpha2: "BR",
     locale: "pt-BR",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "O maior país da América do Sul combina floresta amazônica, cerrado, litoral atlântico e grandes metrópoles. Sua formação reúne povos indígenas, colonização portuguesa, a diáspora africana e ondas de imigração que moldaram língua, música e mesa.",
     sections: [
@@ -249,7 +249,7 @@ export const brazilEditorial: Record<"pt-BR" | "en", CountryEditorialContent> = 
     alpha2: "BR",
     locale: "en",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "South America's largest country combines the Amazon rainforest, the Cerrado savanna, an Atlantic coastline and major cities. It was shaped by Indigenous peoples, Portuguese colonization, the African diaspora and waves of immigration that left their mark on language, music and food.",
     sections: [

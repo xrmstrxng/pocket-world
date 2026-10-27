@@ -22,7 +22,7 @@ export const nigeriaEditorial: Record<"pt-BR" | "en", CountryEditorialContent> =
     alpha2: "NG",
     locale: "pt-BR",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "O país mais populoso da África reúne mais de 250 grupos étnicos, centenas de línguas e reinos antigos que deixaram uma herança artística marcante. Do delta do Níger ao Sahel, a Nigéria também é potência cultural, do cinema de Nollywood ao afrobeat.",
     sections: [
@@ -157,7 +157,7 @@ export const nigeriaEditorial: Record<"pt-BR" | "en", CountryEditorialContent> =
     alpha2: "NG",
     locale: "en",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "Africa's most populous country brings together more than 250 ethnic groups, hundreds of languages and ancient kingdoms that left a striking artistic legacy. From the Niger Delta to the Sahel, Nigeria is also a cultural powerhouse, from Nollywood cinema to Afrobeat.",
     sections: [

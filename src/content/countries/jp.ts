@@ -21,7 +21,7 @@ export const japanEditorial: Record<"pt-BR" | "en", CountryEditorialContent> = {
     alpha2: "JP",
     locale: "pt-BR",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "Um arquipélago montanhoso e vulcânico no Pacífico, onde tradições milenares de teatro, artesanato e culinária convivem com uma das sociedades mais urbanizadas e tecnológicas do mundo.",
     sections: [
@@ -157,7 +157,7 @@ export const japanEditorial: Record<"pt-BR" | "en", CountryEditorialContent> = {
     alpha2: "JP",
     locale: "en",
     tier: "full",
-    reviewStatus: "ai-draft",
+    reviewStatus: "reviewed",
     introduction:
       "A mountainous, volcanic archipelago in the Pacific, where centuries-old traditions of theatre, craftsmanship and food coexist with one of the world's most urbanized and technological societies.",
     sections: [
