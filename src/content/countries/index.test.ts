@@ -10,8 +10,8 @@ const entries = Object.entries(editorialByAlpha2);
 
 describe("country editorial content", () => {
   it("provides explicit localized placeholders for countries without content", () => {
-    const pt = getCountryEditorialContent("FR", "pt-BR");
-    const en = getCountryEditorialContent("FR", "en");
+    const pt = getCountryEditorialContent("ZZ", "pt-BR");
+    const en = getCountryEditorialContent("ZZ", "en");
     expect(pt.isPlaceholder).toBe(true);
     expect(pt.content).toBeNull();
     expect(en.content).toBeNull();
