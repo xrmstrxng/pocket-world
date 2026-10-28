@@ -8,11 +8,13 @@ import { australiaEditorial } from "./au";
 import { arubaEditorial } from "./aw";
 import { barbadosEditorial } from "./bb";
 import { saintBarthelemyEditorial } from "./bl";
+import { bermudaEditorial } from "./bm";
 import { boliviaEditorial } from "./bo";
 import { caribbeanNetherlandsEditorial } from "./bq";
 import { brazilEditorial } from "./br";
 import { bahamasEditorial } from "./bs";
 import { belizeEditorial } from "./bz";
+import { canadaEditorial } from "./ca";
 import { chileEditorial } from "./cl";
 import { colombiaEditorial } from "./co";
 import { costaRicaEditorial } from "./cr";
@@ -25,6 +27,7 @@ import { ecuadorEditorial } from "./ec";
 import { falklandIslandsEditorial } from "./fk";
 import { grenadaEditorial } from "./gd";
 import { frenchGuianaEditorial } from "./gf";
+import { greenlandEditorial } from "./gl";
 import { guadeloupeEditorial } from "./gp";
 import { guatemalaEditorial } from "./gt";
 import { guyanaEditorial } from "./gy";
@@ -43,6 +46,7 @@ import { nigeriaEditorial } from "./ng";
 import { nicaraguaEditorial } from "./ni";
 import { panamaEditorial } from "./pa";
 import { peruEditorial } from "./pe";
+import { saintPierreAndMiquelonEditorial } from "./pm";
 import { puertoRicoEditorial } from "./pr";
 import { paraguayEditorial } from "./py";
 import { surinameEditorial } from "./sr";
@@ -50,6 +54,8 @@ import { elSalvadorEditorial } from "./sv";
 import { sintMaartenEditorial } from "./sx";
 import { turksAndCaicosIslandsEditorial } from "./tc";
 import { trinidadAndTobagoEditorial } from "./tt";
+import { usMinorOutlyingIslandsEditorial } from "./um";
+import { unitedStatesEditorial } from "./us";
 import { uruguayEditorial } from "./uy";
 import { saintVincentAndTheGrenadinesEditorial } from "./vc";
 import { venezuelaEditorial } from "./ve";
@@ -66,11 +72,13 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   AW: arubaEditorial,
   BB: barbadosEditorial,
   BL: saintBarthelemyEditorial,
+  BM: bermudaEditorial,
   BO: boliviaEditorial,
   BQ: caribbeanNetherlandsEditorial,
   BR: brazilEditorial,
   BS: bahamasEditorial,
   BZ: belizeEditorial,
+  CA: canadaEditorial,
   CL: chileEditorial,
   CO: colombiaEditorial,
   CR: costaRicaEditorial,
@@ -83,6 +91,7 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   FK: falklandIslandsEditorial,
   GD: grenadaEditorial,
   GF: frenchGuianaEditorial,
+  GL: greenlandEditorial,
   GP: guadeloupeEditorial,
   GT: guatemalaEditorial,
   GY: guyanaEditorial,
@@ -101,6 +110,7 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   NI: nicaraguaEditorial,
   PA: panamaEditorial,
   PE: peruEditorial,
+  PM: saintPierreAndMiquelonEditorial,
   PR: puertoRicoEditorial,
   PY: paraguayEditorial,
   SR: surinameEditorial,
@@ -108,6 +118,8 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   SX: sintMaartenEditorial,
   TC: turksAndCaicosIslandsEditorial,
   TT: trinidadAndTobagoEditorial,
+  UM: usMinorOutlyingIslandsEditorial,
+  US: unitedStatesEditorial,
   UY: uruguayEditorial,
   VC: saintVincentAndTheGrenadinesEditorial,
   VE: venezuelaEditorial,
