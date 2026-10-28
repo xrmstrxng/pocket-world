@@ -6,6 +6,7 @@ import { anguillaEditorial } from "./ai";
 import { argentinaEditorial } from "./ar";
 import { australiaEditorial } from "./au";
 import { arubaEditorial } from "./aw";
+import { alandEditorial } from "./ax";
 import { barbadosEditorial } from "./bb";
 import { belgiumEditorial } from "./be";
 import { saintBarthelemyEditorial } from "./bl";
@@ -27,12 +28,15 @@ import { denmarkEditorial } from "./dk";
 import { dominicaEditorial } from "./dm";
 import { dominicanRepublicEditorial } from "./do";
 import { ecuadorEditorial } from "./ec";
+import { estoniaEditorial } from "./ee";
 import { finlandEditorial } from "./fi";
 import { falklandIslandsEditorial } from "./fk";
+import { faroeIslandsEditorial } from "./fo";
 import { franceEditorial } from "./fr";
 import { unitedKingdomEditorial } from "./gb";
 import { grenadaEditorial } from "./gd";
 import { frenchGuianaEditorial } from "./gf";
+import { guernseyEditorial } from "./gg";
 import { greenlandEditorial } from "./gl";
 import { guadeloupeEditorial } from "./gp";
 import { guatemalaEditorial } from "./gt";
@@ -40,14 +44,18 @@ import { guyanaEditorial } from "./gy";
 import { hondurasEditorial } from "./hn";
 import { haitiEditorial } from "./ht";
 import { irelandEditorial } from "./ie";
+import { isleOfManEditorial } from "./im";
 import { icelandEditorial } from "./is";
+import { jerseyEditorial } from "./je";
 import { jamaicaEditorial } from "./jm";
 import { japanEditorial } from "./jp";
 import { saintKittsAndNevisEditorial } from "./kn";
 import { caymanIslandsEditorial } from "./ky";
 import { saintLuciaEditorial } from "./lc";
 import { liechtensteinEditorial } from "./li";
+import { lithuaniaEditorial } from "./lt";
 import { luxembourgEditorial } from "./lu";
+import { latviaEditorial } from "./lv";
 import { monacoEditorial } from "./mc";
 import { saintMartinEditorial } from "./mf";
 import { martiniqueEditorial } from "./mq";
@@ -63,6 +71,7 @@ import { saintPierreAndMiquelonEditorial } from "./pm";
 import { puertoRicoEditorial } from "./pr";
 import { paraguayEditorial } from "./py";
 import { swedenEditorial } from "./se";
+import { svalbardAndJanMayenEditorial } from "./sj";
 import { surinameEditorial } from "./sr";
 import { elSalvadorEditorial } from "./sv";
 import { sintMaartenEditorial } from "./sx";
@@ -84,6 +93,7 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   AR: argentinaEditorial,
   AU: australiaEditorial,
   AW: arubaEditorial,
+  AX: alandEditorial,
   BB: barbadosEditorial,
   BE: belgiumEditorial,
   BL: saintBarthelemyEditorial,
@@ -105,12 +115,15 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   DM: dominicaEditorial,
   DO: dominicanRepublicEditorial,
   EC: ecuadorEditorial,
+  EE: estoniaEditorial,
   FI: finlandEditorial,
   FK: falklandIslandsEditorial,
+  FO: faroeIslandsEditorial,
   FR: franceEditorial,
   GB: unitedKingdomEditorial,
   GD: grenadaEditorial,
   GF: frenchGuianaEditorial,
+  GG: guernseyEditorial,
   GL: greenlandEditorial,
   GP: guadeloupeEditorial,
   GT: guatemalaEditorial,
@@ -118,14 +131,18 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   HN: hondurasEditorial,
   HT: haitiEditorial,
   IE: irelandEditorial,
+  IM: isleOfManEditorial,
   IS: icelandEditorial,
+  JE: jerseyEditorial,
   JM: jamaicaEditorial,
   JP: japanEditorial,
   KN: saintKittsAndNevisEditorial,
   KY: caymanIslandsEditorial,
   LC: saintLuciaEditorial,
   LI: liechtensteinEditorial,
+  LT: lithuaniaEditorial,
   LU: luxembourgEditorial,
+  LV: latviaEditorial,
   MC: monacoEditorial,
   MF: saintMartinEditorial,
   MQ: martiniqueEditorial,
@@ -141,6 +158,7 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   PR: puertoRicoEditorial,
   PY: paraguayEditorial,
   SE: swedenEditorial,
+  SJ: svalbardAndJanMayenEditorial,
   SR: surinameEditorial,
   SV: elSalvadorEditorial,
   SX: sintMaartenEditorial,
