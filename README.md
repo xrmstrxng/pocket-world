@@ -158,6 +158,6 @@ Continuous integration (`.github/workflows/ci.yml`) runs lint, typecheck, tests 
 - **Source choice.** The CIA World Factbook was discontinued in 2026, and several official portals (IBGE, gov.br, Britannica, UNESCO World Heritage) refuse automated access. Drafts prefer institutional sources that could be read (UNESCO intangible heritage lists, national legislation, International IDEA, university press) and fall back to Wikipedia articles, always linked so readers can check them.
 - **Drafts are labeled.** Entries carry `reviewStatus: "ai-draft"` until a person reviews them, and the page shows a visible note while they do. `pnpm content:check-links` confirms that every source URL still resolves. It reports sites that block automated clients separately, for manual checking.
 
-### "Ask about the country" (planned)
+### "Ask about countries" (planned)
 
-The architecture is decided but not yet built. See [ADR 0001](docs/decisions/0001-ask-about-the-country.md). It covers grounded answers with labeled general-knowledge fallback, a configurable provider chain (Groq → Gemini), an eval to choose the model, and a cache that grows from verified answers to reduce dependence on providers over time.
+The architecture is decided but not yet built. See [ADR 0001](docs/decisions/0001-ask-about-the-country.md). It covers a global ask feature where the LLM calls tools that read the snapshots (so questions can compare, rank and filter countries), answers verified part by part with a labeled general-knowledge fallback, a configurable provider chain (Groq → Gemini), an eval to choose the model, and a cache that grows from verified answers to reduce dependence on providers over time.
