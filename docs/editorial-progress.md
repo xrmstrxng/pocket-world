@@ -14,11 +14,22 @@ Work proceeds in batches of 5 countries, one batch per session.
 | Guyana, Paraguay, Peru, Suriname, Uruguay | `gy.ts`, `py.ts`, `pe.ts`, `sr.ts`, `uy.ts` | reviewed |
 | Venezuela, Mexico, Guatemala (full); Falkland Islands, French Guiana (short) | `ve.ts`, `mx.ts`, `gt.ts`, `fk.ts`, `gf.ts` | reviewed |
 
-South America is complete.
+| Central America: BZ, CR, HN, NI, PA, SV | one file per country | ai-draft, committed on `feat/editorial-south-america` |
+| Caribbean: 13 full-tier countries and 15 short-tier territories | one file per country | ai-draft, committed on `feat/editorial-south-america` |
+| North America: CA, US (full); BM, GL, PM, UM (short) | one file per country | ai-draft, committed on `feat/editorial-south-america` |
 
-## Next batch: Central America
+The Americas are complete.
 
-Belize (BZ), Honduras (HN), El Salvador (SV), Nicaragua (NI) and Costa Rica (CR), all full tier. Panama (PA) opens the batch after that.
+## Workflow for the remaining batches
+
+On 2026-10-28 the user asked for all remaining countries to be written now and reviewed later.
+
+- Commit each region locally on the branch. Do not push.
+- Regenerate the registry in `src/content/countries/index.ts` from the files on disk after each region.
+- Find a UNESCO page through `https://ich.unesco.org/en/state/x-XX`, which accepts any prefix and shows the real address. Cite it only if the state has inscribed elements.
+- Stop citing IBGE for new entries, because its hash URLs return 403 and cannot be verified.
+
+## Next region: Europe
 
 Notes from the last batch:
 
