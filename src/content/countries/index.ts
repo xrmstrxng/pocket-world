@@ -1,62 +1,118 @@
 import type { Country } from "@/entities/country/country.types";
 import type { Locale } from "@/shared/types/locale";
 import { afghanistanEditorial } from "./af";
+import { antiguaAndBarbudaEditorial } from "./ag";
+import { anguillaEditorial } from "./ai";
 import { argentinaEditorial } from "./ar";
 import { australiaEditorial } from "./au";
+import { arubaEditorial } from "./aw";
+import { barbadosEditorial } from "./bb";
+import { saintBarthelemyEditorial } from "./bl";
 import { boliviaEditorial } from "./bo";
+import { caribbeanNetherlandsEditorial } from "./bq";
 import { brazilEditorial } from "./br";
+import { bahamasEditorial } from "./bs";
 import { belizeEditorial } from "./bz";
 import { chileEditorial } from "./cl";
 import { colombiaEditorial } from "./co";
 import { costaRicaEditorial } from "./cr";
+import { cubaEditorial } from "./cu";
+import { curacaoEditorial } from "./cw";
 import { germanyEditorial } from "./de";
+import { dominicaEditorial } from "./dm";
+import { dominicanRepublicEditorial } from "./do";
 import { ecuadorEditorial } from "./ec";
 import { falklandIslandsEditorial } from "./fk";
+import { grenadaEditorial } from "./gd";
 import { frenchGuianaEditorial } from "./gf";
+import { guadeloupeEditorial } from "./gp";
 import { guatemalaEditorial } from "./gt";
 import { guyanaEditorial } from "./gy";
 import { hondurasEditorial } from "./hn";
+import { haitiEditorial } from "./ht";
+import { jamaicaEditorial } from "./jm";
 import { japanEditorial } from "./jp";
+import { saintKittsAndNevisEditorial } from "./kn";
+import { caymanIslandsEditorial } from "./ky";
+import { saintLuciaEditorial } from "./lc";
+import { saintMartinEditorial } from "./mf";
+import { martiniqueEditorial } from "./mq";
+import { montserratEditorial } from "./ms";
 import { mexicoEditorial } from "./mx";
 import { nigeriaEditorial } from "./ng";
 import { nicaraguaEditorial } from "./ni";
 import { panamaEditorial } from "./pa";
 import { peruEditorial } from "./pe";
+import { puertoRicoEditorial } from "./pr";
 import { paraguayEditorial } from "./py";
 import { surinameEditorial } from "./sr";
 import { elSalvadorEditorial } from "./sv";
+import { sintMaartenEditorial } from "./sx";
+import { turksAndCaicosIslandsEditorial } from "./tc";
+import { trinidadAndTobagoEditorial } from "./tt";
 import { uruguayEditorial } from "./uy";
+import { saintVincentAndTheGrenadinesEditorial } from "./vc";
 import { venezuelaEditorial } from "./ve";
+import { britishVirginIslandsEditorial } from "./vg";
+import { usVirginIslandsEditorial } from "./vi";
 import type { CountryEditorialContent, CountryEditorialView } from "./editorial.types";
 
 export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialContent>> = {
   AF: afghanistanEditorial,
+  AG: antiguaAndBarbudaEditorial,
+  AI: anguillaEditorial,
   AR: argentinaEditorial,
   AU: australiaEditorial,
+  AW: arubaEditorial,
+  BB: barbadosEditorial,
+  BL: saintBarthelemyEditorial,
   BO: boliviaEditorial,
+  BQ: caribbeanNetherlandsEditorial,
   BR: brazilEditorial,
+  BS: bahamasEditorial,
   BZ: belizeEditorial,
   CL: chileEditorial,
   CO: colombiaEditorial,
   CR: costaRicaEditorial,
+  CU: cubaEditorial,
+  CW: curacaoEditorial,
   DE: germanyEditorial,
+  DM: dominicaEditorial,
+  DO: dominicanRepublicEditorial,
   EC: ecuadorEditorial,
   FK: falklandIslandsEditorial,
+  GD: grenadaEditorial,
   GF: frenchGuianaEditorial,
+  GP: guadeloupeEditorial,
   GT: guatemalaEditorial,
   GY: guyanaEditorial,
   HN: hondurasEditorial,
+  HT: haitiEditorial,
+  JM: jamaicaEditorial,
   JP: japanEditorial,
+  KN: saintKittsAndNevisEditorial,
+  KY: caymanIslandsEditorial,
+  LC: saintLuciaEditorial,
+  MF: saintMartinEditorial,
+  MQ: martiniqueEditorial,
+  MS: montserratEditorial,
   MX: mexicoEditorial,
   NG: nigeriaEditorial,
   NI: nicaraguaEditorial,
   PA: panamaEditorial,
   PE: peruEditorial,
+  PR: puertoRicoEditorial,
   PY: paraguayEditorial,
   SR: surinameEditorial,
   SV: elSalvadorEditorial,
+  SX: sintMaartenEditorial,
+  TC: turksAndCaicosIslandsEditorial,
+  TT: trinidadAndTobagoEditorial,
   UY: uruguayEditorial,
+  VC: saintVincentAndTheGrenadinesEditorial,
   VE: venezuelaEditorial,
+  VG: britishVirginIslandsEditorial,
+  VI: usVirginIslandsEditorial,
 };
 
 const fallbackByLocale: Record<Locale, string> = {
