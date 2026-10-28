@@ -5,20 +5,26 @@ import { argentinaEditorial } from "./ar";
 import { australiaEditorial } from "./au";
 import { boliviaEditorial } from "./bo";
 import { brazilEditorial } from "./br";
+import { belizeEditorial } from "./bz";
 import { chileEditorial } from "./cl";
 import { colombiaEditorial } from "./co";
+import { costaRicaEditorial } from "./cr";
 import { germanyEditorial } from "./de";
 import { ecuadorEditorial } from "./ec";
 import { falklandIslandsEditorial } from "./fk";
 import { frenchGuianaEditorial } from "./gf";
 import { guatemalaEditorial } from "./gt";
 import { guyanaEditorial } from "./gy";
+import { hondurasEditorial } from "./hn";
 import { japanEditorial } from "./jp";
 import { mexicoEditorial } from "./mx";
 import { nigeriaEditorial } from "./ng";
+import { nicaraguaEditorial } from "./ni";
+import { panamaEditorial } from "./pa";
 import { peruEditorial } from "./pe";
 import { paraguayEditorial } from "./py";
 import { surinameEditorial } from "./sr";
+import { elSalvadorEditorial } from "./sv";
 import { uruguayEditorial } from "./uy";
 import { venezuelaEditorial } from "./ve";
 import type { CountryEditorialContent, CountryEditorialView } from "./editorial.types";
@@ -29,20 +35,26 @@ export const editorialByAlpha2: Record<string, Record<Locale, CountryEditorialCo
   AU: australiaEditorial,
   BO: boliviaEditorial,
   BR: brazilEditorial,
+  BZ: belizeEditorial,
   CL: chileEditorial,
   CO: colombiaEditorial,
+  CR: costaRicaEditorial,
   DE: germanyEditorial,
   EC: ecuadorEditorial,
   FK: falklandIslandsEditorial,
   GF: frenchGuianaEditorial,
   GT: guatemalaEditorial,
   GY: guyanaEditorial,
+  HN: hondurasEditorial,
   JP: japanEditorial,
   MX: mexicoEditorial,
   NG: nigeriaEditorial,
+  NI: nicaraguaEditorial,
+  PA: panamaEditorial,
   PE: peruEditorial,
   PY: paraguayEditorial,
   SR: surinameEditorial,
+  SV: elSalvadorEditorial,
   UY: uruguayEditorial,
   VE: venezuelaEditorial,
 };
